@@ -5,17 +5,18 @@ using System.Linq;
 
 namespace IDesign.Framework.Proxy
 {
-    public static class ProxyFactory
+    public class ProxyFactory : IProxyFactory
     {
         static Dictionary<string, string> Container = null;
-        static ProxyFactory()
+
+        ProxyFactory()
         {
             Container = new Dictionary<string, string>();
             Container.Add("IMenuingEngine", "OrderingEngine");
             Container.Add("IProfileAccess", "CustomerAccess");
         }
 
-        static Type GetServiceType<I>() where I : class
+        private Type GetServiceType<I>() where I : class
         {
             string typeName = string.Empty;
 
@@ -38,7 +39,8 @@ namespace IDesign.Framework.Proxy
 
             return implementationType;
         }
-        public static I Create<I>() where I : class
+
+        public I Create<I>() where I : class
         {
             return Activator.CreateInstance(GetServiceType<I>()) as I;
         }

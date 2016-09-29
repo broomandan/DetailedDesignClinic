@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3CDC9298-246A-404C-91EF-9FD7F091E445}</ProjectGuid>
+    <ProjectGuid>{DB7ACA12-6F8A-4D64-B8E8-3E5FE9849E03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Exercise.Tests</RootNamespace>
-    <AssemblyName>Exercise.Tests</AssemblyName>
+    <RootNamespace>IDesign.Manager.Sales.Test</RootNamespace>
+    <AssemblyName>IDesign.Manager.Sales.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.5.22.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.5.22\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,28 +52,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuingOrderingEngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="SalesManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Contract\Online\Sales\IDesign.Contract.Online.Sales.csproj">
-      <Project>{d85a1259-47a6-4900-952c-0cf09be419cc}</Project>
+      <Project>{D85A1259-47A6-4900-952C-0CF09BE419CC}</Project>
       <Name>IDesign.Contract.Online.Sales</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Contract\Restaraunt\IDesign.Contract.Restaurant.Sales.csproj">
-      <Project>{192cc739-c5b3-4343-b84a-844b26b41b53}</Project>
+      <Project>{192CC739-C5B3-4343-B84A-844B26B41B53}</Project>
       <Name>IDesign.Contract.Restaurant.Sales</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Engine\Sales\IDesign.Engine.Sales.csproj">
       <Project>{ABCED016-99FC-4EA9-BDAD-EC7BEE971F7A}</Project>
       <Name>IDesign.Engine.Sales</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Proxy\IDesign.Framework.Proxy.csproj">
+      <Project>{2F041A40-8741-48A2-9EEB-EF766302BE6A}</Project>
+      <Name>IDesign.Framework.Proxy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Manager\Sales\IDesign.Manager.Sales.csproj">
-      <Project>{0a897397-c658-4188-a9fe-66d3538d3f87}</Project>
+      <Project>{0A897397-C658-4188-A9FE-66D3538D3F87}</Project>
       <Name>IDesign.Manager.Sales</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
