@@ -14,6 +14,7 @@ namespace IDesign.Manager.Sales.Test
         private ISalesManager _sut;
         private Mock<IMapper> _mapper;
         private Mock<IProxyFactory> _proxyFactory;
+        private Mock<IMenuingEngine> _orderingEngine;
 
 
         [OneTimeSetUp]
@@ -21,6 +22,7 @@ namespace IDesign.Manager.Sales.Test
         {
             _mapper = new Mock<IMapper>(MockBehavior.Strict);
             _proxyFactory = new Mock<IProxyFactory>(MockBehavior.Strict);
+            _orderingEngine = new Mock<IMenuingEngine>(MockBehavior.Strict);
             _sut = new SalesManager(_mapper.Object, _proxyFactory.Object);
         }
 
@@ -37,10 +39,16 @@ namespace IDesign.Manager.Sales.Test
                 .Returns(new Engine.Sales.ItemCriteria());
 
             _mapper
-                .Setup(x => x.Map<IDesign.Engine.Sales.Item>(It.IsAny<Item>()))
-                .Returns(new IDesign.Engine.Sales.Item());
-            _proxyFactory.Setup(x => x.Create<IMenuingEngine>())
-                .Returns(new OrderingEngine());
+                .Setup(x => x.Map<Item>(It.IsAny<IDesign.Engine.Sales.Item>()))
+                .Returns(new Item());
+            
+            _proxyFactory
+                .Setup(x => x.Create<IMenuingEngine>())
+                .Returns(_orderingEngine.Object);
+
+            _orderingEngine
+                .Setup(x => x.MathItem(It.IsAny<Engine.Sales.ItemCriteria>()))
+                .Returns(new Engine.Sales.Item());
 
             var criteria = new ItemCriteria();
             var actual = _sut.FindItem(criteria);
