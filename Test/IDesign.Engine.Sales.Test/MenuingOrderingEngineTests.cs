@@ -1,7 +1,6 @@
-﻿using IDesign.Engine.Sales;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace IDesign.Manager.Sales.Test
+namespace IDesign.Engine.Sales.Test
 {
     [TestFixture]
     public class MenuingOrderingEngineTests
